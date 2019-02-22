@@ -20,6 +20,6 @@ server.use((request, response) => {
 });
 
 //Binding to a port
-server.listen(3000, () => {
+server.listen(3001, () => {
     console.log('Express server started at port 3000');
 });
