@@ -1,0 +1,22 @@
+{
+  "name": "learn-node1",
+  "version": "1.0.0",
+  "description": "Practice node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KGreen175/learn-node1.git"
+  },
+  "author": "Kris Green",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KGreen175/learn-node1/issues"
+  },
+  "homepage": "https://github.com/KGreen175/learn-node1#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
