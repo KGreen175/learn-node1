@@ -1,7 +1,7 @@
-const express = require('express'),
-    server = express();
-
-server.set('port', process.env.PORT || 3001);
+const express = require('express')
+const server = express();
+const hostname = '127.0.0.1';
+const port = 3000;
 
 //Basic routes
 server.get('/', (request, response) => {
@@ -12,6 +12,22 @@ server.get('/about', (request, response) => {
     response.send('About Page')
 });
 
+server.get('/health', (request, response) => {
+    let health = {
+        "status": "UP"
+    };
+    response.end(JSON.stringify(health));
+});
+
+server.get('/env', (request, response) => {
+    let env = {
+        "systemEnvironment": {
+            "environment": process.env.NODE_ENV
+        }
+    };
+    response.end(JSON.stringify(env));
+});
+
 //Express error handling middleware
 server.use((request, response) => {
     response.type('text/plain');
@@ -20,7 +36,6 @@ server.use((request, response) => {
 });
 
 //Binding to a port
-server.listen(3001, () => {
-    console.log('Express server started at port 3001');
-    console.log("Running in environment: "  + process.env.NODE_ENV);
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
 });
