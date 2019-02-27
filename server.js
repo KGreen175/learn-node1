@@ -1,5 +1,7 @@
 const express = require('express')
 const server = express();
+const path = require('path');
+const os = require('os');
 const hostname = '127.0.0.1';
 const port = 3000;
 
@@ -20,13 +22,21 @@ server.get('/health', (request, response) => {
 });
 
 server.get('/env', (request, response) => {
-    let env = {
+    const nodeEnv = process.env.NODE_ENV;
+    const totalMemory = os.totalmem() / (1024 * 1024);
+    const freeMemory = os.freemem() / (1024 * 1024);
+    const env = {
         "systemEnvironment": {
-            "environment": process.env.NODE_ENV
+            "environment": nodeEnv,
+            "totalMemory": totalMemory,
+            "freeMemory": freeMemory
         }
     };
     response.end(JSON.stringify(env));
 });
+
+const pathObj = path.parse(__filename);
+console.log('Testing path module: ',pathObj);
 
 //Express error handling middleware
 server.use((request, response) => {
