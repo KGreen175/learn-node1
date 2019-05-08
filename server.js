@@ -1,12 +1,6 @@
 const express = require("express");
 const server = express();
-const EventEmiiter = require("events");
-const emitter = new EventEmiiter();
-const fs = require("fs");
 const os = require("os");
-const path = require("path");
-const Logger = require("./logger");
-const logger = new Logger();
 const hostname = "127.0.0.1";
 const port = 3000;
 
