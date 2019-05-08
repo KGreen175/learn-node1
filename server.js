@@ -52,39 +52,6 @@ server.get("/env", (request, response) => {
   response.end(JSON.stringify(env));
 });
 
-//Testing node modules
-const pathObj = path.parse(__filename);
-console.log("Testing path module: ", pathObj);
-
-//async version of readdir, takes a callback func
-fs.readdir("./", (err, files) => {
-  if (err) console.log("Error", err);
-  else console.log("readdir: ", files);
-});
-
-//Register a listener on emitter
-emitter.on("logging", eArg => {
-  console.log("logging listener called", eArg);
-});
-
-//Register a listener on my logger class
-logger.on("messageLogged", eventArg => {
-  console.log("messageLogged listener called", eventArg);
-});
-
-//Calling emit
-emitter.emit("logging", { id: 1, message: "job started" });
-
-//Calling log function on logger class
-logger.log("My message!");
-
-//Express error handling middleware
-server.use((request, response) => {
-  response.type("text/plain");
-  response.status(505);
-  response.send("Error Page");
-});
-
 //Binding to a port
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
